@@ -1,36 +1,39 @@
 # Semantic Segmentation
+
+[//]: # (Image References)
+[image1]: ./figs/um_000000.png
+[image2]: ./figs/um_lane_000000.png
+[image3]: ./figs/um_000003.png
+[image4]: ./figs/um_000004.png
+[image5]: ./figs/um_000005.png
+
+
 ### Introduction
-In this project, you'll label the pixels of a road in images using a Fully Convolutional Network (FCN).
+In this project, we segment roads in [Kitti](http://www.cvlibs.net/download.php?file=data_road.zip dataset using Fully Convolutional Network (FCN).
 
-### Setup
-##### Frameworks and Packages
-Make sure you have the following is installed:
- - [Python 3](https://www.python.org/)
- - [TensorFlow](https://www.tensorflow.org/)
- - [NumPy](http://www.numpy.org/)
- - [SciPy](https://www.scipy.org/)
-##### Dataset
-Download the [Kitti Road dataset](http://www.cvlibs.net/datasets/kitti/eval_road.php) from [here](http://www.cvlibs.net/download.php?file=data_road.zip).  Extract the dataset in the `data` folder.  This will create the folder `data_road` with all the training a test images.
+### Training
 
-### Start
-##### Implement
-Implement the code in the `main.py` module indicated by the "TODO" comments.
-The comments indicated with "OPTIONAL" tag are not required to complete.
-##### Run
-Run the following command to run the project:
-```
-python main.py
-```
-**Note** If running this in Jupyter Notebook system messages, such as those regarding test status, may appear in the terminal rather than the notebook.
+#### Dataset 
 
-### Submission
-1. Ensure you've passed all the unit tests.
-2. Ensure you pass all points on [the rubric](https://review.udacity.com/#!/rubrics/989/view).
-3. Submit the following in a zip file.
- - `helper.py`
- - `main.py`
- - `project_tests.py`
- - Newest inference images from `runs` folder  (**all images from the most recent run**)
- 
- ## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+The kitti dataset contains images of roads with multiple level of labeling. We used the training consist of images of the following form:
+
+![][image1]
+
+The ground truth is provided as a labeled pixels seperating background from the road segment in the image:
+
+![][image2]
+
+
+#### Network
+
+We implemented the FCN8 network from the [paper](https://www.cv-foundation.org/openaccess/content_cvpr_2015/html/Long_Fully_Convolutional_Networks_2015_CVPR_paper.html) using tensorflow.
+
+### Results
+
+The network was trained using Adam optimizer for 10 EPOCHs using a batch size of single image. Here is a sample of results:
+
+![][image3]
+![][image4]
+![][image5]
+
+
